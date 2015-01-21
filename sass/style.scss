@@ -1,3 +1,136 @@
-body {
-  font-size: 20px;
+body, html, ul, li {
+  padding: 0;
+  margin: 0;
+}
+.isMenuToggle {
+  display: block;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+
+/*
+  SLIDE DOWN MENU
+ */
+.slidedown-menu {
+  overflow: hidden;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  -webkit-overflow-scrolling: touch;
+
+  /* Fix flickering and add hardware acceleration */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+
+  @media only screen and (min-width: 768px) {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* Clear floats after the nav menu */
+  &:before,
+  &:after {
+    content: " "; 
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  
+  /* Transition the menu */
+  &.isVisible {
+    max-height: 900px;
+    transition: max-height 0.25s ease-in;
+  }
+
+  /* Menu links */
+  & a {
+    display: block;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+
+    @media only screen and (min-width: 768px) {
+
+    }
+  }
+  
+  /* First level nav items */
+  & > li {
+    position: relative;
+    background: #717171;
+    z-index: 200;
+    float: none;
+
+    @media only screen and (min-width: 768px) {
+      float: left;
+      width: auto;
+      white-space: nowrap;
+    }
+  }
+
+  /* All second level menu items & beyond */
+  & > li ul {
+    list-style: none;
+    width: 100%;
+    background: #333;
+    position: absolute;
+    left: -9999px;
+    z-index: 100;
+    display: block;
+
+    @media only screen and (min-width: 768px) {
+      width: auto;
+      min-width: 100%;
+    }
+  }
+
+  /* Display the second level menu items below the first. */
+  & > li.active > ul {
+    position: static;
+
+    @media only screen and (min-width: 768px) {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  /* Sub-nav support dynamic content */
+  & li li {
+    white-space: nowrap;
+  }
+
+
+  /* 
+    Any sub-menus deeper than second level, display to the right
+    of its' parent menu
+  */
+  & li li.active > ul {
+    position: static;
+
+    @media only screen and (min-width: 768px) {
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
+  }
+
+  & .parent:after {
+    content: " ";
+    display: inline-block;
+    background: url("../img/arrow-down.png") no-repeat;
+    background-size: contain;
+    width: .9em;
+    height: .9em;
+    margin: 0 0 0 5px;
+  }
 }

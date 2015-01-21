@@ -1,12 +1,112 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Prototype</title>
+    <title>Slide Down navigation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-    
+    <nav class="nav">
+      <a href="#" class="isMenuToggle">Menu</a>
+      <ul class="slidedown-menu">
+        <li><a href="#">Articles</a></li>
+        <li>
+          <a href="#">Submit</a>
+          <ul>
+            <li><a href="#">Format Manuscript</a></li>
+            <li><a href="#">Provide supporting info</a></li>
+            <li><a href="#">Prepare cover letter</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">About</a>
+          <ul>
+            <li>
+              <a href="#">Blogs</a>
+              <ul>
+                <li>
+                  <a href="#">Format Manuscript</a>
+                  <ul>
+                    <li>
+                      <a href="#">Format Manuscript</a>
+                      <ul>
+                        <li><a href="/format">Format Manuscript</a></li>
+                        <li><a href="#">Provide supporting info</a></li>
+                        <li><a href="#">Prepare cover letter</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Provide supporting info</a></li>
+                    <li><a href="#">Prepare cover letter</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Provide supporting info</a></li>
+                <li><a href="#">Prepare cover letter</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Gateways</a></li>
+            <li><a href="#">ISRCTN</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+
+    (function($) {
+      'use strict';
+
+      $(document).ready(function() {
+
+        // Cache DOM elements
+        var $menu = $('.slidedown-menu'),
+            $menuToggle = $('.isMenuToggle'),
+            $menuLinks = $('.slidedown-menu li a'),
+            $menuItems = $('.slidedown-menu li');
+
+        // Activate the mobile menu
+        $menuToggle.on('touchstart click', function(e) {
+          e.preventDefault();
+          $menu.toggleClass('isVisible');
+        });
+
+
+        // Add a parent class to menu items that have submenus
+        $menuLinks.each(function() {
+          if ($(this).next().length > 0) {
+            $(this).addClass('parent');
+          }
+        });
+
+        /* Trigger the menu
+         * 
+         * Default: click or touch. In case Modernizr is not used,
+         * menu should be accessible everywhere.
+         */
+        if(!window.Modernizr || Modernizr.touch) {
+          $('.slidedown-menu li a.parent').bind('touchstart click', function(e) {
+            e.preventDefault();
+            $(this).parent('li').toggleClass('active');
+          });
+        }
+
+        // Desktop devices - use hover - or delete to use click everywhere.
+        else {
+           $menuItems.hover(function(e) {
+            $(this).toggleClass('active');
+          });
+        }
+      });
+    })(jQuery);
+    </script>
   </body>
 </html>

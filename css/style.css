@@ -1,4 +1,146 @@
 /* line 1, ../sass/style.scss */
-body {
-  font-size: 20px;
+body, html, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 5, ../sass/style.scss */
+.isMenuToggle {
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+  /* line 5, ../sass/style.scss */
+  .isMenuToggle {
+    display: none;
+  }
+}
+
+/*
+  SLIDE DOWN MENU
+ */
+/* line 16, ../sass/style.scss */
+.slidedown-menu {
+  overflow: hidden;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  -webkit-overflow-scrolling: touch;
+  /* Fix flickering and add hardware acceleration */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* Clear floats after the nav menu */
+  /* Transition the menu */
+  /* Menu links */
+  /* First level nav items */
+  /* All second level menu items & beyond */
+  /* Display the second level menu items below the first. */
+  /* Sub-nav support dynamic content */
+  /* 
+    Any sub-menus deeper than second level, display to the right
+    of its' parent menu
+  */
+}
+@media only screen and (min-width: 768px) {
+  /* line 16, ../sass/style.scss */
+  .slidedown-menu {
+    max-height: none;
+    overflow: visible;
+  }
+}
+/* line 40, ../sass/style.scss */
+.slidedown-menu:before, .slidedown-menu:after {
+  content: " ";
+  display: table;
+}
+/* line 45, ../sass/style.scss */
+.slidedown-menu:after {
+  clear: both;
+}
+/* line 50, ../sass/style.scss */
+.slidedown-menu.isVisible {
+  max-height: 900px;
+  transition: max-height 0.25s ease-in;
+}
+/* line 56, ../sass/style.scss */
+.slidedown-menu a {
+  display: block;
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px;
+}
+/* line 68, ../sass/style.scss */
+.slidedown-menu > li {
+  position: relative;
+  background: #717171;
+  z-index: 200;
+  float: none;
+}
+@media only screen and (min-width: 768px) {
+  /* line 68, ../sass/style.scss */
+  .slidedown-menu > li {
+    float: left;
+    width: auto;
+    white-space: nowrap;
+  }
+}
+/* line 82, ../sass/style.scss */
+.slidedown-menu > li ul {
+  list-style: none;
+  width: 100%;
+  background: #333;
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+  /* line 82, ../sass/style.scss */
+  .slidedown-menu > li ul {
+    width: auto;
+    min-width: 100%;
+  }
+}
+/* line 98, ../sass/style.scss */
+.slidedown-menu > li.active > ul {
+  position: static;
+}
+@media only screen and (min-width: 768px) {
+  /* line 98, ../sass/style.scss */
+  .slidedown-menu > li.active > ul {
+    position: absolute;
+    left: 0;
+  }
+}
+/* line 108, ../sass/style.scss */
+.slidedown-menu li li {
+  white-space: nowrap;
+}
+/* line 117, ../sass/style.scss */
+.slidedown-menu li li.active > ul {
+  position: static;
+}
+@media only screen and (min-width: 768px) {
+  /* line 117, ../sass/style.scss */
+  .slidedown-menu li li.active > ul {
+    position: absolute;
+    left: 100%;
+    top: 0;
+  }
+}
+/* line 127, ../sass/style.scss */
+.slidedown-menu .parent:after {
+  content: " ";
+  display: inline-block;
+  background: url("../img/arrow-down.png") no-repeat;
+  background-size: contain;
+  width: .9em;
+  height: .9em;
+  margin: 0 0 0 5px;
 }
