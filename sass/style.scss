@@ -124,6 +124,7 @@ body, html, ul, li {
     }
   }
 
+  /* A menu item which displays a sub-menu */
   & .parent:after {
     content: " ";
     display: inline-block;
@@ -132,5 +133,11 @@ body, html, ul, li {
     width: .9em;
     height: .9em;
     margin: 0 0 0 5px;
+  }
+
+  /* Sub-menu opened */
+  & li.active > .parent:after {
+    background: url("../img/arrow-right.png") no-repeat;
+    background-size: contain;
   }
 }

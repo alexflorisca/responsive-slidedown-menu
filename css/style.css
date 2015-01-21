@@ -46,6 +46,8 @@ body, html, ul, li {
     Any sub-menus deeper than second level, display to the right
     of its' parent menu
   */
+  /* A menu item which displays a sub-menu */
+  /* Sub-menu opened */
 }
 @media only screen and (min-width: 768px) {
   /* line 16, ../sass/style.scss */
@@ -134,7 +136,7 @@ body, html, ul, li {
     top: 0;
   }
 }
-/* line 127, ../sass/style.scss */
+/* line 128, ../sass/style.scss */
 .slidedown-menu .parent:after {
   content: " ";
   display: inline-block;
@@ -143,4 +145,9 @@ body, html, ul, li {
   width: .9em;
   height: .9em;
   margin: 0 0 0 5px;
+}
+/* line 139, ../sass/style.scss */
+.slidedown-menu li.active > .parent:after {
+  background: url("../img/arrow-right.png") no-repeat;
+  background-size: contain;
 }
